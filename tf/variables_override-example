@@ -1,0 +1,59 @@
+# Make sure this file has it's permissions set to 600 for all copies.
+# Overrides details here: https://www.terraform.io/docs/configuration/override.html
+# Without any of the following, Terraform will prompt for them.
+
+variable "access_key" { default = "<your aws access key>" }
+variable "secret_key" { default = "<your aws secret key>" }
+
+variable "cloudflare_email" { default = "<your cloudflare email>" }
+# Where to find your API key: https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-Cloudflare-API-key-
+variable "cloudflare_token" { default = "<your cloudflare token>" }
+
+variable "security_group_rules" {
+  default = {
+    # SSH
+    rule_0_type = "ingress"
+    rule_0_from_port = 22
+    rule_0_to_port = 22
+    rule_0_protocol = "tcp"
+    rule_0_cidr_block_0 = "<your administering IP in cidr format>"
+    # HTTP
+    rule_1_type = "ingress"
+    rule_1_from_port = 80
+    rule_1_to_port = 80
+    rule_1_protocol = "tcp"
+    rule_1_cidr_block_0 = "0.0.0.0/0"
+
+    # Could lock this down futher.
+    rule_2_type = "egress"
+    rule_2_from_port = 0
+    rule_2_to_port = 0
+    rule_2_protocol = "-1"
+    rule_2_cidr_block_0 = "0.0.0.0/0"
+  }
+}
+
+variable "key_pair" {
+  default = {
+    key_name = "docker_host_deployer"
+    # Create your key-pair: http://f1.holisticinfosecforwebdevelopers.com/chap03.html#vps-countermeasures-disable-remove-services-harden-what-is-left-ssh-hardening-ssh
+    public_key_file_path = "</home/you/.ssh/id_rsa.pub>"
+    private_key_file_path = "</home/you/.ssh/id_rsa>"
+  }
+}
+
+variable "instance_user" { default = "<user name>" }
+variable "docker_image_name" { default = "<your image name>" }
+variable "image_app_content" { default = "<dir where your app source lives>" }
+variable "local_tarred_docker_image_path" { default = "<source path of your tarred image>" }
+variable "remote_tarred_docker_image_path" { default = "<target path of your tarred image>" }
+variable "docker_container_name" { default = "<what ever you want to tag your container as>"}
+
+# First elicit the version of docker you have been testing with with the following command:
+# `docker version`
+# Then on the target instance work out the parallel version with the following command:
+# sudo apt-get update && apt-cache madison docker-ce
+# Documented here: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce-1
+variable "tested_docker_version" { default = "<docker version>" } # For example: "17.09.0~ce-0~ubuntu"
+
+variable "cloudflare_domain" { default = "<used for both domain name and record name>"}
