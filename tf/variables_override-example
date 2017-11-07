@@ -24,7 +24,7 @@ variable "security_group_rules" {
     rule_1_protocol = "tcp"
     rule_1_cidr_block_0 = "0.0.0.0/0"
 
-    # Could lock this down futher.
+    # Could lock this down further.
     rule_2_type = "egress"
     rule_2_from_port = 0
     rule_2_to_port = 0
