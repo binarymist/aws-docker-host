@@ -92,7 +92,7 @@ resource "aws_instance" "dockerhost" {
       "echo \"##### The container is running as: #####\"",
       "docker ps --quiet | xargs docker inspect --format '{{ .Id }}: User={{ .Config.User }}'",
       "echo \"##### Removing tarred docker image. #####\"",
-      "sudo rm ${var.remote_tarred_image_path}"
+      "rm ${var.remote_tarred_image_path}"
     ]
   }
 }
