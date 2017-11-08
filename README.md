@@ -70,7 +70,7 @@ When happy, turn services off on last years AWS account, and bingo, you have ano
 
 # For ad-hoc or continuous deployment of individual containers
 
-For example, once you have already ran `terraform apply` and your infrastructure is setup, you can very easily just run `terraform destroy` -> `terraform plan` -> `terraform apply`, but if you have other containers running, on your free EC2 instance, this is overkill, so I usually just do the following:
+For example, once you have already ran `terraform apply` and your infrastructure is setup, you can very easily just run `terraform destroy` -> `terraform plan` -> `terraform apply` again, but if you have other containers running on your **free** EC2 instance, this is overkill, so I usually just do the following:
 
 build image:
 
