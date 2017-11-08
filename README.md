@@ -51,9 +51,9 @@ Make sure Docker is installed locally, ideally with same version that was last u
    * CLI access only
    * Created group `docker<n>-cli`
    * Added Policies: `AmazonEC2FullAccess` and `IAMFullAccess` (need for IAM role we add in [aws-docker-host/tf/iam/user.tf](https://github.com/binarymist/aws-docker-host/blob/aefe2eba9e953a93c248fd42f7c5be94a1c54021/tf/iam/user.tf))  
-   
+
    This user runs the `terraform [ plan | apply | destroy]`. Access key id and secret access key need to be updated in aws-docker-host/tf/variables_override.tf access_key and secret_key  
-   While you're there, update the cloudflare_email and cloudflare_token if they have changed (unlikely), along with any other values in the variables_override.tf file, also make sure you have generated your SSH key-pair as per directions if you don't already have one. Just rename the `variables_override-example` to `variables_override.tf` add your configurations, and `chmod 600`, keep it safe and don't commit it to source control  
+   While you're there, update the cloudflare_email and cloudflare_token if they have changed (unlikely), along with any other values in the variables_override.tf file, also make sure you have generated your SSH key-pair as I explain [here](http://f1.holisticinfosecforwebdevelopers.com/chap03.html#vps-countermeasures-disable-remove-services-harden-what-is-left-ssh-hardening-ssh) in my book. Just rename the [`variables_override-example`](https://github.com/binarymist/aws-docker-host/blob/f62f757da2b2529784e1ea3f90a20cedea11a72f/tf/variables_override-example) to `variables_override.tf` add your configurations, and `chmod 600`, keep it safe and don't commit it to source control  
    
 5. `terraform init` will be needed on any new development machine to load modules  
    * Then it's just a matter of `terraform plan`, `terraform apply`, `terraform destroy`
