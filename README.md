@@ -39,23 +39,24 @@ Make sure Docker is installed locally, ideally with same version that was last u
 
 1. Create gmail account (terraformedawsdocker<n>@gmail.com) for example  
    * Setup 2FA and Backup codes  
-  
-2. Create AWS account (root user) terraformedawsdocker<n>@gmail.com.  
+   
+2. Create AWS account (root user) terraformedawsdocker<n>@gmail.com  
    * Use dummy info  
-  
+   
 3. Create AWS IAM user terraformedawsdocker<n> from root account  
-  * This account has AdministratorAccess managed policy
-  * This account had cli turned on, so I could run Terraform initially, cli is not needed on this user as I now use a lower privilged user, and cli key is deactivated. When you crate this user, don't need cli key at all  
-
+   * This account has AdministratorAccess managed policy
+   * This account had cli turned on, so I could run Terraform initially, cli is not needed on this user as I now use a lower privilged user (see next step), and cli key is deactivated. When you crate this user, you can deactivate cli key  
+   
 4. Create AWS IAM user terraformedawsdocker<n>-cli from terraformedawsdocker<n> user above  
    * CLI access only
-   * Created group docker0-cli
-   * Added Policies: AmazonEC2FullAccess and IAMFullAccess (need for IAM role we add in aws-docker-host/tf/iam/user.tf)  
+   * Created group `docker<n>-cli`
+   * Added Policies: `AmazonEC2FullAccess` and `IAMFullAccess` (need for IAM role we add in [aws-docker-host/tf/iam/user.tf](https://github.com/binarymist/aws-docker-host/blob/aefe2eba9e953a93c248fd42f7c5be94a1c54021/tf/iam/user.tf))  
+   
    This user runs the `terraform [ plan | apply | destroy]`. Access key id and secret access key need to be updated in aws-docker-host/tf/variables_override.tf access_key and secret_key  
    While you're there, update the cloudflare_email and cloudflare_token if they have changed (unlikely), along with any other values in the variables_override.tf file, also make sure you have generated your SSH key-pair as per directions if you don't already have one. Just rename the `variables_override-example` to `variables_override.tf` add your configurations, and `chmod 600`, keep it safe and don't commit it to source control  
-
+   
 5. `terraform init` will be needed on any new development machine to load modules  
-  * Then it's just a matter of `terraform plan`, `terraform apply`, `terraform destroy`
+   * Then it's just a matter of `terraform plan`, `terraform apply`, `terraform destroy`
 
 Check CloudFlare record to satisfy yourself that the new elastic IP has been added as the `A` record for your domain.
 
