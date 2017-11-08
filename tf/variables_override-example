@@ -37,6 +37,7 @@ variable "key_pair" {
   default = {
     key_name = "docker_host_deployer"
     # Create your key-pair: http://f1.holisticinfosecforwebdevelopers.com/chap03.html#vps-countermeasures-disable-remove-services-harden-what-is-left-ssh-hardening-ssh
+    # Passphrase protected keys are not supported.
     public_key_file_path = "</home/you/.ssh/id_rsa.pub>"
     private_key_file_path = "</home/you/.ssh/id_rsa>"
   }
