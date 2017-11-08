@@ -4,6 +4,7 @@
     <img width=1024px src="Logo.png" alt="aws-docker-host logo">
   </a>
   <br/>
+</div>
 <br/><br/>
 
 # Licence
