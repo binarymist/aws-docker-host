@@ -146,7 +146,7 @@ build_and_tar_image() {
    echo "docker save produced file: $(ls $local_tarred_docker_image_path -liah)"
 }
 
-scp_tared_img() {
+scp_tarred_img() {
    echo
    #scp -i $private_key_file_path -qv -P $sshPort $local_tarred_docker_image_path $instance_user@$targetServer:~ 2>&1 | grep -v debug
    # Rsync gives us nice progress meter.
@@ -170,9 +170,9 @@ remote_host_work() {
 
 
 build_and_tar_image
-scp_tared_img
+scp_tarred_img
 remote_host_work
-...
+```
 
 Now just run the following once you've turned the executable bit on:
 
