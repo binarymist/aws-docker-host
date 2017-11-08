@@ -56,11 +56,11 @@ Make sure Docker is installed locally, ideally with same version that was last u
    While you're there, update the cloudflare_email and cloudflare_token if they have changed (unlikely), along with any other values in the variables_override.tf file, also make sure you have generated your SSH key-pair as I explain [here](http://f1.holisticinfosecforwebdevelopers.com/chap03.html#vps-countermeasures-disable-remove-services-harden-what-is-left-ssh-hardening-ssh) in my book. Just rename the [`variables_override-example`](https://github.com/binarymist/aws-docker-host/blob/f62f757da2b2529784e1ea3f90a20cedea11a72f/tf/variables_override-example) to `variables_override.tf` add your configurations, and `chmod 600`, keep it safe and don't commit it to source control  
    
 5. `terraform init` will be needed on any new development machine to load modules  
-   * Then it's just a matter of `terraform plan`, `terraform apply`, `terraform destroy`
+   * Then it's just a matter of `terraform plan` -> `terraform apply`, and `terraform destroy` if you want to have another go.
 
 Check CloudFlare record to satisfy yourself that the new elastic IP has been added as the `A` record for your domain.
 
-If this is the second time your doing this with a new AWS account, once you have a successful deployment:
+If this is the second time you're doing this with a new AWS account, once you have a successful deployment:
 
 1. Upgrade Terraform to latest version
 2. Upgrade Docker to latest stable version
@@ -68,9 +68,9 @@ If this is the second time your doing this with a new AWS account, once you have
 
 When happy, turn services off on last years AWS account, and bingo, you have another free year, with very little work.
 
-# For ad-hoc deployment of individual containers
+# For ad-hoc or continuous deployment of individual containers
 
-For example, once you have already ran `terraform apply` and your infrastructure is setup:
+For example, once you have already ran `terraform apply` and your infrastructure is setup, you can very easily just run `terraform destroy` -> `terraform plan` -> `terraform apply`, but if you have other containers running, on your free EC2 instance, this is overkill, so I usually just do the following:
 
 build image:
 
