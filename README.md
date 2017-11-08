@@ -32,8 +32,8 @@ Make sure [Terraform is installed](https://www.terraform.io/intro/getting-starte
 1. Download the zip
 2. Verify the checksum
 3. Extract to a place on your path:  
-  `sudo unzip ~/Downloads/terraform_0.10.6_linux_amd64.zip -d /opt/  
-  `sudo ln -s /opt/terraform /usr/bin/terraform`
+  * `sudo unzip ~/Downloads/terraform_0.10.6_linux_amd64.zip -d /opt/`
+  * `sudo ln -s /opt/terraform /usr/bin/terraform`
 
 Make sure Docker is installed locally, ideally with same version that was last used to setup the infrastructure (detailed in [aws-docker-host/tf/variables_override.tf](https://github.com/binarymist/aws-docker-host/blob/77429d31dc460e4c438fa6399975257af3eb6724/tf/variables_override-example#L57) tested_docker_version).
 
